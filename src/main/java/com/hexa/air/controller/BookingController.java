@@ -24,8 +24,9 @@ public class BookingController {
 		String departure = objectNode.get("departure").asText();
 		String destination = objectNode.get("destination").asText();
 		String date = objectNode.get("date").asText();
+		String type = objectNode.get("type").asText();
 		int seats = objectNode.get("seats").asInt();
-		return bookingService.getFlight(departure, destination, date, seats);
+		return bookingService.getFlight(departure, destination, date, type, seats);
 	}
 
 }

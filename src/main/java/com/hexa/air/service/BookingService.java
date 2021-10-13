@@ -14,9 +14,13 @@ public class BookingService {
 	@Autowired
 	FlightRepository flightRepository;
 
-	public List<Flight> getFlight(String DepartureCity, String DestinationCity, String DepartureDate, int seats) {
+	public List<Flight> getFlight(String DepartureCity, String DestinationCity, String DepartureDate, String type, int seats) {
 		
-		return flightRepository.findByFilter(DepartureCity, DestinationCity, DepartureDate);
+		if(type.toLowerCase().equals("economy"))
+			return flightRepository.findByFilterEconomy(DepartureCity, DestinationCity, DepartureDate, seats);
+		if(type.toLowerCase().equals("business"))
+			return flightRepository.findByFilterBusiness(DepartureCity, DestinationCity, DepartureDate, seats);
+		return null;
 		
 	}
 }
