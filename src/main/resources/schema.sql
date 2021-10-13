@@ -1,0 +1,1 @@
+CREATE TABLE Flight (FlightNumber varchar(5), Name varchar(10), DepartureCity varchar(20), DestinationCity varchar(20), DepartureDate varchar(20), DepartureTime varchar(20), ArrivalDate varchar(20), ArrivalTime varchar(20), BusinessClassSeats int, EconomyClassSeats int, BusinessClassPrice int, EconomyClassPrice int)
