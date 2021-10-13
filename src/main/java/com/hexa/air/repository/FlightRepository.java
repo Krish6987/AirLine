@@ -13,6 +13,6 @@ import com.hexa.air.entity.Flight;
 
 public interface FlightRepository extends CrudRepository<Flight, String> {
 
-	@Query("SELECT f from FLIGHT f where f.DepartureCity =:DepartureCity AND f.DestinationCity =:DestinationCity AND f.DepartureDate =:DepartureDate")
-	List<Flight> findByFilter(@Param("DepartureCity") String DepartureCity, @Param("DestinationCity") String DestinationCity, @Param("DepartureDate") String DepartureDate);
+//	@Query("SELECT f from FLIGHT f where f.DepartureCity =:DepartureCity AND f.DestinationCity =:DestinationCity AND f.DepartureDate =:DepartureDate")
+//	List<Flight> findByFilter(@Param("DepartureCity") String DepartureCity, @Param("DestinationCity") String DestinationCity, @Param("DepartureDate") String DepartureDate);
 }

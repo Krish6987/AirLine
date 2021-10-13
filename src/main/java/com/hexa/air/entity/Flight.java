@@ -1,54 +1,47 @@
 package com.hexa.air.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "FLIGHT")
+@Table(name = "Flight")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Flight {
 
 	@Id
-	@Column(name="FlightNumber", length=5)
-	String FlightNumber;
-	@NotNull
-	@Column(name="Name", length=10)
-	String Name;
-	@NotNull
-	@Column(name="DepartureCity", length=20)
-	String DepartureCity;
-	@Column(name="DestinationCity", length=20)
-	@NotNull
-	String DestinationCity;
-	@Column(name="DepartureDate", length=20)
-	@NotNull
-	String DepartureDate;
-	@Column(name="DepartureTime", length=20)
-	@NotNull
-	String DepartureTime;
-	@Column(name="ArrivalDate", length=20)
-	@NotNull
-	String ArrivalDate;
-	@Column(name="ArrivalTime", length=20)
-	@NotNull
-	String ArrivalTime;
-	@Column(name="BusinessClassSeats")
-	@NotNull
-	int BusinessClassSeats;
-	@Column(name="EconomyClassSeats")
-	@NotNull
-	int EconomyClassSeats;
-	@Column(name="BusinessClassPrice")
-	@NotNull
-	int BusinessClassPrice;
-	@Column(name="EconomyClassPrice")
-	@NotNull
-	int EconomyClassPrice;
+	@Column(name = "FlightNumber", nullable = false)
+	@GeneratedValue
+	private String FlightNumber;
+	@Column(name = "Name")
+	private String Name;
+	@Column(name = "DepartureCity")
+	private String DepartureCity;
+	@Column(name = "DestinationCity")
+	private String DestinationCity;
+	@Column(name = "DepartureDate")
+	private String DepartureDate;
+	@Column(name = "DepartureTime")
+	private String DepartureTime;
+	@Column(name = "ArrivalDate")
+	private String ArrivalDate;
+	@Column(name = "ArrivalTime")
+	private String ArrivalTime;
+	@Column(name = "BusinessClassSeats")
+	private int BusinessClassSeats;
+	@Column(name = "EconomyClassSeats")
+	private int EconomyClassSeats;
+	@Column(name = "BusinessClassPrice")
+	private int BusinessClassPrice;
+	@Column(name = "EconomyClassPrice")
+	private int EconomyClassPrice;
 	
 	public String getFlightNumber() {
 		return FlightNumber;
@@ -130,5 +123,7 @@ public class Flight {
 				+ ", BusinessClassSeats=" + BusinessClassSeats + ", EconomyClassSeats=" + EconomyClassSeats
 				+ ", BusinessClassPrice=" + BusinessClassPrice + ", EconomyClassPrice=" + EconomyClassPrice + "]";
 	}
+	
+	
 	
 }
