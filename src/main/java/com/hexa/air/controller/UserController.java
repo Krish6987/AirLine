@@ -2,7 +2,6 @@ package com.hexa.air.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,18 +19,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/test")
-	public String test() {
-		return "Microservice is working good!!!";
-	}
 	
 	@RequestMapping(value = "/signup", method=RequestMethod.POST)
-	public String signup(@RequestBody User user) {
+	public String signUp(@RequestBody User user) {
 		return userService.signup(user);
 	}
 	
 	@RequestMapping(value = "/signin", method=RequestMethod.POST)
-	public String signin(@RequestBody ObjectNode objectNode) {
+	public String signIn(@RequestBody ObjectNode objectNode) {
 		String id = objectNode.get("id").asText();
 		String password = objectNode.get("password").asText();
 		return userService.signin(id, password);

@@ -1,11 +1,8 @@
 package com.hexa.air.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,11 +13,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "Flight")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Flight implements Serializable{
+public class Flight{
 
 	@Id
-    @GeneratedValue(generator="uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(name = "FlightNumber", nullable = false, length=5)
 	private String FlightNumber;
 	@Column(name = "Name")
