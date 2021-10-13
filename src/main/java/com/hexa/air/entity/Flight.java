@@ -9,16 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Flight")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Flight {
+public class Flight implements Serializable{
 
 	@Id
-	@Column(name = "FlightNumber", nullable = false)
-	@GeneratedValue
+    @GeneratedValue(generator="uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+	@Column(name = "FlightNumber", nullable = false, length=5)
 	private String FlightNumber;
 	@Column(name = "Name")
 	private String Name;
