@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
     this.form=new FormGroup({
       id : new FormControl("", Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$')
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$')
       ])),
       password : new FormControl("",  Validators.compose([
         Validators.required,
