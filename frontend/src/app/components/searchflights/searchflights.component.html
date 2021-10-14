@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <h2 class="text-center">Search Flights</h2>
+      <form action="/getflights" method="POST" [formGroup]="form">
+        <div class="form-group">
+          <label for="id">Departure City</label>
+          <select class="form-control" formControlName="departurecity" (change)="changeDesCityList()">
+            <option value="" selected>---Select Departure City---</option>
+            <option *ngFor="let city of descities" value="{{ city }}">
+              {{ city }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id">Destination City</label>
+          <select class="form-control" formControlName="destinationcity" (change)="changeDepCityList()">
+            <option value="" selected>---Select Destination City---</option>
+            <option *ngFor="let city of descities" value="{{ city }}">
+              {{ city }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id">Departure Date</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="date"
+            id="date"
+            placeholder="Select Departure Date"
+            name="date"
+          />
+        </div>
+        <div class="form-group">
+          <label for="id">Seats</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="seats"
+            id="seats"
+            placeholder="Select Number of Seats"
+            name="seats"
+          />
+        </div>
+        <div class="form-group">
+          <label for="id">Class</label>
+          <select class="form-control" formControlName="class">
+            <option value="" selected>---Select Class---</option>
+            <option value="business">
+              Business
+            </option>
+            <option value="economy">
+              Economy
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid" (click)="searchFlights(form.value)">Search Flights</button>
+        <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="flights !== ''">
+  <br>
+    <div *ngFor="let flight of flights">
+        <div class="jumbotron">
+            <div class = "row">
+                <div class = "col-sm-1">
+                <h4>Flight Number</h4>
+                {{flight.flightNumber}}
+                </div>
+                <div class = "col-sm-2">
+                <h4>Flight Name</h4>
+                {{flight.name}}
+                </div>
+                <div class = "col-sm-2">
+                <h4>Arrival Date</h4>
+                {{flight.arrivalDate}}
+                </div>
+                <div class = "col-sm-2">
+                <h4>Departure Time</h4>
+                {{flight.departureTime}}
+                </div>
+                <div class = "col-sm-2">
+                <h4>Arrival Time</h4>
+                {{flight.arrivalTime}}
+                </div>
+                <div class = "col-sm-1">
+                <h4>Business Price</h4>
+                {{flight.businessClassPrice}}
+                </div>
+                <div class = "col-sm-1">
+                <h4>Economy Price</h4>
+                {{flight.economyClassPrice}}
+                </div>
+                <div class = "col-sm-1">
+                <button type="button" class="btn btn-lg btn-primary center">Book</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="row" *ngIf="message !== ''">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 text-center">
+    <h3 style="color:red">{{ message }}</h3>
+    </div>
+  </div>
+</div>
