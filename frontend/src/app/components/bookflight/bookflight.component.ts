@@ -63,8 +63,7 @@ export class BookflightComponent implements OnInit {
       ])),
       ccNumber : new FormControl("",  Validators.compose([
         Validators.required,
-        Validators.minLength(16),
-        Validators.maxLength(16)
+        Validators.pattern('^[0-9]{16}$')
       ]))
     })
     this.showDetails = false
