@@ -16,7 +16,7 @@ export class SearchflightsComponent implements OnInit {
   error: string;
   data: any;
   flights: any;
-  cityList = ["Bengaluru", "Chennai", "Delhi", "Goa", "Leh", "Mumbai", "Srinagar"]
+  cityList = ["Bengaluru", "Chennai", "Delhi", "Goa", "Hyderabad", "Leh", "Mumbai", "Srinagar", "Visakhapatnam", "Vijayawada"]
   descities: Array<any>;
   depcities: Array<any>;
   message: string
@@ -48,21 +48,6 @@ export class SearchflightsComponent implements OnInit {
         Validators.required
       ])),
     })
-  }
-
-  changeDesCityList(){
-    // var temp = this.cityList
-    // const index = temp.indexOf(this.form.get("departurecity")?.value)
-    // temp.splice(index,1)
-    // this.descities = temp
-  }
-
-  changeDepCityList(){
-    // var temp = this.cityList
-    // const index = temp.indexOf(this.form.get("destinationcity")?.value)
-
-    // temp.splice(index,1)
-    // this.depcities = temp
   }
 
   searchFlights(data: any){

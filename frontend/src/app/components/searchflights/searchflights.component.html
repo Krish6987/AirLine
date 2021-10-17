@@ -5,27 +5,27 @@
       <h2 class="text-center">Search Flights</h2>
       <form action="/getflights" method="POST" [formGroup]="form">
         <div class="form-group">
-          <label for="id">Departure City</label>
-          <select
-            class="form-control"
-            formControlName="departurecity"
-            (change)="changeDesCityList()"
-          >
+          <label for="departurecity">Departure City</label>
+          <select class="form-control" formControlName="departurecity">
             <option value="" selected>---Select Departure City---</option>
-            <option *ngFor="let city of descities" value="{{ city }}">
+            <option
+              *ngFor="let city of descities"
+              value="{{ city }}"
+              [hidden]="form.get('destinationcity').value == city ? true : null"
+            >
               {{ city }}
             </option>
           </select>
         </div>
         <div class="form-group">
-          <label for="id">Destination City</label>
-          <select
-            class="form-control"
-            formControlName="destinationcity"
-            (change)="changeDepCityList()"
-          >
+          <label for="destinationcity">Destination City</label>
+          <select class="form-control" formControlName="destinationcity">
             <option value="" selected>---Select Destination City---</option>
-            <option *ngFor="let city of descities" value="{{ city }}">
+            <option
+              *ngFor="let city of descities"
+              value="{{ city }}"
+              [hidden]="form.get('departurecity').value == city ? true : null"
+            >
               {{ city }}
             </option>
           </select>
@@ -78,7 +78,7 @@
       <div class="jumbotron">
         <div class="row">
           <div class="col-sm-1">
-            <h5><b>Number</b></h5>
+            <h5><b>Flight Number</b></h5>
             {{ flight.flightNumber }}
           </div>
           <div class="col-sm-2">

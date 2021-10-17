@@ -91,11 +91,11 @@
   <div class="container" *ngIf="showDetails == true">
     <div class="jumbotron">
       <form [formGroup]="bookForm">
-      <div class="row">
-      <div class="col-sm-4 text-right">
-          <h3>Enter Passenger Details:</h3>
+        <div class="row">
+          <div class="col-sm-4 text-right">
+            <h3>Enter Passenger Details:</h3>
           </div>
-      </div>
+        </div>
         <div class="row">
           <div class="col-sm-4"></div>
           <div class="col-sm-4 form-group">
@@ -175,31 +175,37 @@
   <div class="container">
     <div class="jumbotron">
       <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-1">
-          <svg
-            class="checkmark"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 52 52"
-          >
-            <circle
-              class="checkmark__circle"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            />
-            <path
-              class="checkmark__check"
-              fill="none"
-              d="M14.1 27.2l7.1 7.2 16.7-16.8"
-            />
-          </svg>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+          <table class="table table-borderless">
+            <tr>
+              <th>
+                <svg
+                  class="checkmark"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 52 52"
+                >
+                  <circle
+                    class="checkmark__circle"
+                    cx="26"
+                    cy="26"
+                    r="25"
+                    fill="none"
+                  />
+                  <path
+                    class="checkmark__check"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+                </svg>
+              </th>
+              <th>
+                <h3>Transaction Successful</h3>
+              </th>
+            </tr>
+          </table>
         </div>
-        <div class="col-sm-2 text-left">
-          <h3>Transaction Successful</h3>
-        </div>
-        <div class="col-sm-5"></div>
+        <div class="col-sm-3"></div>
       </div>
       <div class="row">
         <div class="col-sm-2"></div>
@@ -209,6 +215,19 @@
           </h4>
         </div>
         <div class="col-sm-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 text-justify">
+          <p>
+            As per the current government guidelines, it is mandatory to web
+            check-in for your domestic flight. Complete it for free 48 hr to 60
+            min before your domestic flight and 24 hr to 75 min before your
+            international flight. A facilitation fee of ₹200 (domestic flights
+            only) is applicable for airport check-in with assistance.
+          </p>
+        </div>
+        <div class="col-sm-1"></div>
       </div>
     </div>
   </div>

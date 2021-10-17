@@ -24,6 +24,7 @@ export class BookflightComponent implements OnInit {
 
   ngOnInit(): void {
     this.confirmationNumber = ""
+    this.flight = {}
     if(!this.cookieService.check("id"))
       this.router.navigate(['/signin']);
     this.activatedroute.paramMap.subscribe(params => { 
@@ -94,7 +95,7 @@ export class BookflightComponent implements OnInit {
   }
 
   book(data: any){
-    if(confirm("Proceed Booking?")){
+    if(confirm("Are you sure want to proceed Booking?")){
       let details = {
         flight_number: this.flightNumber,
         type: this.form.get("class")?.value,
