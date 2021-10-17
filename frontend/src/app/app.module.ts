@@ -15,8 +15,9 @@ import { SigninComponent } from './components/signin/signin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from './services/user.service';
 import { LogoutComponent } from './components/logout/logout.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { SearchflightsComponent } from './components/searchflights/searchflights.component';
+import { BookflightComponent } from './components/bookflight/bookflight.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { SearchflightsComponent } from './components/searchflights/searchflights
     SignupComponent,
     SigninComponent,
     LogoutComponent,
-    FooterComponent,
-    SearchflightsComponent
+    SearchflightsComponent,
+    BookflightComponent,
+    BookingsComponent
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,8 @@ export class LogoutComponent implements OnInit {
   constructor(private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if(this.cookieService.check("id")){
-      this.cookieService.delete("id")
-      this.router.navigate(['/signin']);
-    }
-    else{
-      this.router.navigate(['/'])
-    }
+    this.cookieService.deleteAll()
+    this.router.navigate(['/signin']);
   }
 
 }

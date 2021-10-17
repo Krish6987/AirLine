@@ -3,6 +3,7 @@ package com.hexa.air.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,36 +39,50 @@ public class BookingService {
 		return null;
 	}
 	
-	public String bookFlight(String flight_number, String passengerId, String type, int seats, String passengerName, String address, String creditCard) {
+	public String bookFlight(String flight_number, String passengerId, String type, int seats, String passengerName, String address, String creditCard, int totalCost) {
 		
-		Booking booking = new Booking();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();
-		String dateTime = dtf.format(now).toString();
-		dateTime = dateTime.replaceAll("/","");
-		dateTime = dateTime.replaceAll(":", "");
-		dateTime = dateTime.replaceAll(" ","");
-		Random rand = new Random();
-		int randomNum = rand.nextInt((5000 - 1) + 1) + 1;
-		String confirmationNumber = dateTime+flight_number+randomNum;
-		booking.setConfirmationNumber(confirmationNumber);
-		booking.setFlightNumber(flight_number);
-		booking.setPassengerId(passengerId);
-		booking.setPassengerName(passengerName);
-		booking.setType(type);
-		booking.setSeats(seats);
-		try {
-			bookingRepository.save(booking);
-			if(type.toLowerCase().equals("economy")){
-				flightRepository.updateEconomySeats(flight_number, seats);
-			}
-			else if(type.toLowerCase().equals("business")){
-				flightRepository.updateBusinessSeats(flight_number, seats);
-			}
-			return confirmationNumber;
+		Flight flight = new Flight();
+		flight = flightRepository.findById(flight_number).get();
+		int availableSeats = 0;
+		if(type.toLowerCase().equals("business")){
+			availableSeats = flight.getBusinessClassSeats();
 		}
-		
-		catch(Exception e) {
+		else if(type.toLowerCase().equals("economy")){
+			availableSeats = flight.getEconomyClassSeats();
+		}
+		if(availableSeats >= seats) {
+			Booking booking = new Booking();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();
+			String dateTime = dtf.format(now).toString();
+			dateTime = dateTime.replaceAll("/","");
+			dateTime = dateTime.replaceAll(":", "");
+			dateTime = dateTime.replaceAll(" ","");
+			Random rand = new Random();
+			int randomNum = rand.nextInt((5000 - 1) + 1) + 1;
+			String confirmationNumber = dateTime+flight_number+randomNum;
+			booking.setConfirmationNumber(confirmationNumber);
+			booking.setFlightNumber(flight_number);
+			booking.setPassengerId(passengerId);
+			booking.setPassengerName(passengerName);
+			booking.setType(type);
+			booking.setSeats(seats);
+			booking.setTotalCost(totalCost);
+			try {
+				bookingRepository.save(booking);
+				if(type.toLowerCase().equals("economy")){
+					flightRepository.updateEconomySeats(flight_number, seats);
+				}
+				else if(type.toLowerCase().equals("business")){
+					flightRepository.updateBusinessSeats(flight_number, seats);
+				}
+				return confirmationNumber;
+			  }
+				catch(Exception e) {
+					return "Booking Unsuccessful";
+				}
+			}
+		else {
 			return "Booking Unsuccessful";
 		}
 	}

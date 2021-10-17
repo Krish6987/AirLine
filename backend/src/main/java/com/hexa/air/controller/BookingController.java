@@ -45,8 +45,9 @@ public class BookingController {
 		String passengerId = objectNode.get("id").asText();
 		String passengerName = objectNode.get("passengerName").asText();
 		String address = objectNode.get("address").asText(); 
-		String creditCard = objectNode.get("creditCard").asText(); ;
-		return bookingService.bookFlight(flight_number, passengerId, type, seats, passengerName, address, creditCard);
+		String creditCard = objectNode.get("creditCard").asText();
+		int totalCost = objectNode.get("totalCost").asInt(); 
+		return bookingService.bookFlight(flight_number, passengerId, type, seats, passengerName, address, creditCard, totalCost);
 	}
 	
 	@RequestMapping(value = "/getbookings/{passengerId}", method=RequestMethod.GET)

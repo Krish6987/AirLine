@@ -22,4 +22,20 @@ export class UserService {
   getFlights(data: {departure: String, destination: String, date: String, type: String, seats: String}){
     return this.http.post(this.url+"/getflights", data, {responseType: 'json'});
   }
+
+  getUser(userId: String){
+    return this.http.get(this.url+"/getuser/"+userId);
+  }
+
+  getFlightDetails(flightNumber: String){
+    return this.http.get(this.url+"/getflightdetails/"+flightNumber);
+  }
+
+  bookFlight(details: any){
+    return this.http.post(this.url+"/bookflight", details, {responseType: 'text'});
+  }
+
+  getBookings(userId: String){
+    return this.http.get(this.url+"/getbookings/"+userId);
+  }
 }

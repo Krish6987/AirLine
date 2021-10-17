@@ -1,0 +1,43 @@
+<div class="container" *ngIf="bookings.length !== 0">
+  <h1>Your Bookings</h1>
+  <div *ngFor="let booking of bookings">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-1 text-center">
+          <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm-2">
+          <h4><b>Flight Number</b></h4>
+          {{ booking.flightNumber }}
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Passenger Name</b></h4>
+          {{ booking.passengerName }}
+        </div>
+        <div class="col-sm-2">
+          <h4><b>Class</b></h4>
+          {{ booking.type | titlecase }}
+        </div>
+        <div class="col-sm-2">
+          <h4><b>Seats</b></h4>
+          {{ booking.seats }}
+        </div>
+        <div class="col-sm-2">
+          <h4><b>Total</b></h4>
+          {{ booking.totalCost }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="bookings.length === 0">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+      <h1 style="color: red">No Bookings Found!!</h1>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+</div>

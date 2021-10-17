@@ -35,11 +35,11 @@ public class UserService {
 		return "nouser";
 	}
 	
-	public String getUser(String id) {
+	public User getUser(String id) {
 		if(userRepository.existsById(id)) {
 			User user = userRepository.getById(id);
-			return user.toString();
+			return user;
 		}
-		return "No User";
+		return null;
 	}
 }

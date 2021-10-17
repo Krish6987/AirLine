@@ -25,7 +25,7 @@ export class SearchflightsComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.cookieService.get("id"))
-      this.router.navigate(['/home']);
+      this.router.navigate(['/signin']);
     this.loading = false;
     this.message = ''
     this.flights = ''
@@ -82,7 +82,7 @@ export class SearchflightsComponent implements OnInit {
         this.flights = res
       }
       else {
-        this.message = "No Flights found with the results";
+        this.message = "No Flights found with the search";
       }
     });
   }

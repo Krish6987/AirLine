@@ -15,6 +15,14 @@ public class Booking {
 	private String flightNumber;
 	private String type;
 	private int seats;
+	private int totalCost;
+	
+	public int getTotalCost() {
+		return totalCost;
+	}
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
+	}
 	public String getConfirmationNumber() {
 		return confirmationNumber;
 	}
@@ -54,7 +62,8 @@ public class Booking {
 	@Override
 	public String toString() {
 		return "Booking [confirmationNumber=" + confirmationNumber + ", passengerId=" + passengerId + ", passengerName="
-				+ passengerName + ", flightNumber=" + flightNumber + ", type=" + type + ", seats=" + seats + "]";
+				+ passengerName + ", flightNumber=" + flightNumber + ", type=" + type + ", seats=" + seats
+				+ ", totalCost=" + totalCost + "]";
 	}
 	
 	

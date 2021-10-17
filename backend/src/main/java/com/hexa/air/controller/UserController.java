@@ -33,7 +33,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/getuser/{id}", method=RequestMethod.GET)
-	public String getUser(@PathVariable("id") String id){
+	public User getUser(@PathVariable("id") String id){
 		return userService.getUser(id);
 	}
 	

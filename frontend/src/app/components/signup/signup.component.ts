@@ -82,10 +82,6 @@ export class SignupComponent implements OnInit {
     }
     return null;
   }
-  // pwdMatchValidator(frm: FormGroup) {
-  //   return frm.get('password') === frm.get('confirmpassword')
-  //     ? null : { mismatch: true };
-  // }
 
   signup(data: any) {
     this.loading = true;
@@ -102,7 +98,7 @@ export class SignupComponent implements OnInit {
     this.userService.addUser(this.user).subscribe((res) =>{
       this.loading = false;
       if(res == "true"){
-        alert("Your User Id is :: "+ this.id[0]+"\n Use this while signing in")
+        alert("Your User Id is :: "+ this.id[0]+"\nUse this while signing in")
         this.router.navigate(['/signin']);
       }
       else if(res == "false"){

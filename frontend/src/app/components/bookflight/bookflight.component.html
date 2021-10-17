@@ -1,0 +1,215 @@
+<div *ngIf="confirmationNumber == ''">
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-3">
+          <h4><b>Flight Number</b></h4>
+          <h5>{{ flightNumber }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Flight Name</b></h4>
+          <h5>{{ flight.name }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Departure City</b></h4>
+          <h5>{{ flight.departureCity }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Destination City</b></h4>
+          <h5>{{ flight.destinationCity }}</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <h4><b>Departure Date</b></h4>
+          <h5>{{ flight.departureDate }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Departure Time</b></h4>
+          <h5>{{ flight.departureTime }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Arrival Date</b></h4>
+          <h5>{{ flight.arrivalDate }}</h5>
+        </div>
+        <div class="col-sm-3">
+          <h4><b>Arrival Time</b></h4>
+          <h5>{{ flight.arrivalTime }}</h5>
+        </div>
+      </div>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <h4><b>Class</b></h4>
+              <select
+                class="form-control"
+                formControlName="class"
+                (change)="calculateTotal()"
+              >
+                <option value="" selected>---Select Class---</option>
+                <option value="business">Business</option>
+                <option value="economy">Economy</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <h4><b>Seats</b></h4>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="seats"
+                id="seats"
+                placeholder="Enter Number of Seats"
+                name="seats"
+                (change)="calculateTotal()"
+              />
+            </div>
+          </div>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-3" *ngIf="total > 0">
+            <div class="form-group">
+              <h4><b>Total</b></h4>
+              <h4>{{ total }}</h4>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row" *ngIf="total > 0">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+          <button class="btn btn-success" (click)="enterDetails()">
+            Proceed
+          </button>
+        </div>
+        <div class="col-sm-5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="showDetails == true">
+    <div class="jumbotron">
+      <form [formGroup]="bookForm">
+      <div class="row">
+      <div class="col-sm-4 text-right">
+          <h3>Enter Passenger Details:</h3>
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 form-group">
+            <h4><b>Passenger Name</b></h4>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              id="name"
+              placeholder="Enter Passenger Name"
+              name="Name"
+            />
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 form-group">
+            <h4><b>Passenger Address</b></h4>
+            <textarea
+              id="address"
+              name="address"
+              formControlName="address"
+              class="form-control"
+              placeholder="Enter Passenger Address.."
+            ></textarea>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 form-group">
+            <h4><b>Credit Card Number</b></h4>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="ccNumber"
+              id="ccNumber"
+              placeholder="Enter Credit Card Number"
+              name="ccNumber"
+            />
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 form-group text-center">
+            <button
+              class="btn btn-success"
+              [disabled]="!bookForm.valid"
+              (click)="book(bookForm.value)"
+            >
+              Book
+            </button>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="confirmationNumber == 'wrong'">
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <h3 style="color: red">Transaction Failed</h3>
+          <h4>Something went wrong!!</h4>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="confirmationNumber !== '' && confirmationNumber !== 'wrong'">
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-1">
+          <svg
+            class="checkmark"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 52 52"
+          >
+            <circle
+              class="checkmark__circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
+            <path
+              class="checkmark__check"
+              fill="none"
+              d="M14.1 27.2l7.1 7.2 16.7-16.8"
+            />
+          </svg>
+        </div>
+        <div class="col-sm-2 text-left">
+          <h3>Transaction Successful</h3>
+        </div>
+        <div class="col-sm-5"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 text-center">
+          <h4 style="color: #7ac142">
+            Your Booking Number is {{ confirmationNumber }}
+          </h4>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
